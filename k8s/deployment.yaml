@@ -19,6 +19,12 @@ spec:
           image: "christianoamora/k8s-test:v4"
           env: 
             - name: NAME
-              value: "Chris"
+              valueFrom:
+                configMapKeyRef:
+                  name: goserver-env
+                  key: NAME
             - name: AGE
-              value: "28"
+              valueFrom:
+                configMapKeyRef:
+                  name: goserver-env
+                  key: AGE
