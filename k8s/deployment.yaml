@@ -16,7 +16,19 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "christianoamora/k8s-test:v4"
+          image: "christianoamora/k8s-test:v6"
           envFrom:
             - configMapRef:
                 name: goserver-env
+
+          volumeMounts:
+            - mountPath: "/lasanha/myfamily"
+              name: config
+
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-family
+            items:
+            - key: members
+              path: "family.txt"
